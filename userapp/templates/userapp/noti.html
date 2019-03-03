@@ -1,0 +1,184 @@
+{% extends "userapp/userlayout.html" %}
+{% block content %}
+
+
+
+<html>
+    <head>
+<style>
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+</style>
+<script>
+    $(document).ready(function() {
+    var panels = $('.user-infos');
+    var panelsButton = $('.dropdown-user');
+    panels.hide();
+
+    //Click dropdown
+    panelsButton.click(function() {
+        //get data-for attribute
+        var dataFor = $(this).attr('data-for');
+        var idFor = $(dataFor);
+
+        //current button
+        var currentButton = $(this);
+        idFor.slideToggle(400, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+            }
+            else
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+            }
+        })
+    });
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('button').click(function(e) {
+        e.preventDefault();
+        alert("This is a demo.\n :-)");
+    });
+});
+</script>
+    </head>
+    <body>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+      <div class="row">
+   
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+            <h1>  {{id}}</h1>
+              {% if data %}
+              <div class="row">
+                
+              
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <thead>
+                      <tr>
+                        <th>
+                         Your Work is confirmed,The Details are given below
+                        </th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                      
+                      
+                      
+                      <tr>
+                        <td>Start Date:</td>
+                        <td>{{data.startdate}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>End Date:</td>
+                        <td>{{data.enddate}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Architect:</td>
+
+                        <td>{{archdata.add_name}}
+                        </td>
+                           
+                      </tr>
+                      <td><a href="{% url 'suggestions' %}" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Add Suggestions</a></td>
+                      
+                      
+                    </tbody>
+                  </table>
+                  
+                 
+                </div>
+              </div>
+              {% else %}
+                
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Notifications</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>You have no notifications</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              {% endif %}
+            </div>
+                 
+                 
+                 
+                 
+                 
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+</html> 
+{% endblock %}

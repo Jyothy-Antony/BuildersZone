@@ -1,0 +1,73 @@
+{% extends "architectapp/architectlayout.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+              <h1>ADD BUILDERS</h1>
+            </header>
+            <div class="panel-body">
+                <form class="form-horizontal" action="{% url 'architectedit' detail.id %}?id=detail.id" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-3">Name</label>
+                            <div class="col-lg-6">
+                                <input class=" form-control" id="cname" name="name" minlength="2" required="" type="text" value="{{detail.add_name}}">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="ccomment" class="control-label col-lg-3">Address</label>
+                            <div class="col-lg-6">
+                                <textarea class="form-control " id="ccomment" name="address" required="">{{detail.add_address}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cemail" class="control-label col-lg-3">E-Mail</label>
+                            <div class="col-lg-6">
+                                <input class="form-control " id="cemail" name="email" required="" type="email" value="{{detail.add_email}}">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cemail" class="control-label col-lg-3">Password</label>
+                            <div class="col-lg-6">
+                                <input class="form-control " id="cemail" name="pass" required="" type="text" value="{{detail.add_pass}}">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="curl" class="control-label col-lg-3">Phone</label>
+                            <div class="col-lg-6">
+                                <input class="form-control " maxlength="10"  pattern="[0-9]{10}" id="curl" name="phone" type="text" required="" value="{{detail.add_phone}}">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                                <label for="cname" class="control-label col-lg-3">Qualification</label>
+                                <div class="col-lg-6">
+                                    <input class=" form-control" id="cname" name="quali" minlength="2" required="" type="text" value="{{detail.add_quali}}">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                    <label for="cname" class="control-label col-lg-3">Experience</label>
+                                    <div class="col-lg-6">
+                                        <input class=" form-control" id="cname" name="exp" maxlength="2"  pattern="[0-9]{2}" required="" type="text" value="{{detail.add_exp}}">
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="radio" value="">
+                                </div>
+                        <div class="form-group ">
+                            <label for="curl" class="control-label col-lg-3">Image</label>
+                            <div class="col-lg-6">
+                                <input class="form-control " id="curl" name="image" type="file">
+                                
+                                <img src="{{detail.add_image.url}}"style="height: 50px;width: 50px">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <div class="col-lg-offset-3 col-lg-6">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                                
+                            </div>
+                        </div>
+                </form>
+            </div>
+{% endblock %}

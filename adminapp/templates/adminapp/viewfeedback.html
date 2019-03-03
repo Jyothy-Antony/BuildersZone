@@ -1,0 +1,49 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="col-lg-12">
+<div class="table-agile-info">
+    <div class="panel panel-default">
+       <div>
+         <table class="table" ui-jq="footable" ui-options="{
+           &quot;paging&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;filtering&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;sorting&quot;: {
+             &quot;enabled&quot;: true
+           }}">
+           <thead>
+             <tr>
+               
+               <th>Name</th>
+               
+               <th>Email</th>
+               <th>Feedback</th>
+               
+             </tr>
+           </thead>
+           <tbody>
+               {% for i in feedbackdata %}
+             <tr data-expanded="true">
+                   
+              
+               
+               <td>{{i.name}}</td>
+               <td>{{i.email}}</td>
+               <td>{{i.feedback}}</td>
+               
+            </tr>
+             {% endfor %}
+           
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+</div>
+</div>
+{% endblock %}

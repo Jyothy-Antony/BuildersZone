@@ -1,0 +1,123 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+<div class="container">
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+          <h1>ADD BUILDERS</h1>
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="{% url "addbuliders" %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Name</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="cname" name="name"  required="" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="ccomment" class="control-label col-lg-3">Address</label>
+                        <div class="col-lg-6">
+                            <textarea class="form-control " id="ccomment" name="address" required=""></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="cemail" class="control-label col-lg-3">E-Mail</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="cemail" name="email" required="" type="email">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Phone</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " maxlength="10"  pattern="[0-9]{10}" id="curl" name="phone" type="text" required="">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-3">Qualification</label>
+                            <div class="col-lg-6">
+                                <input class=" form-control" id="cname" name="quali"  required="" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                                <label for="cname" class="control-label col-lg-3">Experience</label>
+                                <div class="col-lg-6">
+                                    <input class=" form-control" id="cname" name="exp"  required="" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="cname" class="control-label col-lg-3">Password</label>
+                                <div class="col-lg-6">
+                                    <input class=" form-control" id="cname" name="pass"  required="" type="text">
+                                </div>
+                            </div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Image</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="curl" name="image" type="file">
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-default" type="button">Cancel</button> {% if msg %}
+                            {{msg}}
+                            {% endif %}
+                        </div>
+                    </div>
+            </form>
+        </div>
+        <div class="table-agile-info">
+                <div class="panel panel-default">
+                   <div>
+                     <table class="table" ui-jq="footable" ui-options="{
+                       &quot;paging&quot;: {
+                         &quot;enabled&quot;: true
+                       },
+                       &quot;filtering&quot;: {
+                         &quot;enabled&quot;: true
+                       },
+                       &quot;sorting&quot;: {
+                         &quot;enabled&quot;: true
+                       }}">
+                       <thead>
+                         <tr>
+                           <th>ID</th>
+                           <th>Name</th>
+                           
+                           <th>Qualification</th>
+                           <th>Experience</th>
+                           <th>Email</th>
+                           <th>Contact</th>
+                           <th>Image</th>
+                           <th>Send Login</th>
+                           <th>Edit</th>
+                           <th>Delete</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                           {% for i in bldrdata %}
+                         <tr data-expanded="true">
+                                <td>{{i.id}}</td>
+                           <td>{{i.add_name}}</td>
+                           
+                           <td>{{i.add_quali}}</td>
+                           <td>{{i.add_exp}}</td>
+                           <td>{{i.add_email}}</td>
+                           <td>{{i.add_phone}}</td>
+                           <td><img src="{{i.add_image.url}}" style="height: 50px;width: 50px"/></td>
+                           <td><a href="{% url 'builderapprove' id=i.id %}?id=i.id" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>{{i.add_approve}}</a></td>
+                           <td><a href="{% url 'bldredit' id=i.id %}?id=i.id" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Edit</a></td>
+                          <td><a href="{% url 'bldrdelete' id=i.id %}?id=i.id"class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Delete Details" onclick="return confirm('Do You Want To Delete?')"></i>Delete</a></td>  
+                        </tr>
+                         {% endfor %}
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+               </div>
+    </section>
+
+</div>
+</div>
+{% endblock %}

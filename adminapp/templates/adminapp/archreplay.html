@@ -1,0 +1,63 @@
+
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-lg-12">
+<div class="table-agile-info">
+    <div class="panel panel-default">
+       <div>
+         <table class="table" ui-jq="footable" ui-options="{
+           &quot;paging&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;filtering&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;sorting&quot;: {
+             &quot;enabled&quot;: true
+           }}">
+           <thead>
+             <tr>
+                    <th>Location</th>
+                    <th>SquareFeet</th>
+                    <th>Architect Cost</th>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Architect Plan</th>
+              <th>Add Commision</th>
+              <th>Status</th>
+             </tr>
+           </thead>
+           <tbody>
+            {% for i in  data %}
+              {% for j in  userdata %}
+                {% with a=i.userid %}
+                  {% with b=j.id %}
+                  {% if a == b %}
+                  {% if i.archcost %}
+                      <tr data-expanded="true">
+                        <td>{{i.location}}</td>
+                        <td>{{i.sqrft}}</td>
+                        <td>{{i.archcost}}</td>
+                        <td>{{j.add_name}}</td>
+                        <td>{{j.add_email}}</td>
+                        
+                        <td><img src="{{i.archplan.url}}" style="height: 50px;width: 50px"/></td>
+                        <td><a href="{% url 'addcommision1' i.id %}" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Add Commision</a></td>
+                     
+                      <td>{{i.status}}</td>
+                      </tr>
+                      {% endif %}
+                    {% endif %}
+                  {% endwith %}
+                {% endwith %}
+              {% endfor %}
+            {% endfor %}
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+</div>
+</div>
+   {% endblock %}

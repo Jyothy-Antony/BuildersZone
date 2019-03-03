@@ -1,0 +1,137 @@
+{% extends "publicapp/publiclayout.html" %}
+{% block content %}
+<div class="container">
+
+       <form action="{% url "requirment" %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="col-md-6 price">
+                   <h3><span>Search For Home</span></h3>
+                   <div class="reservation">
+                       <div class="section_room">
+                           <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                           <select id="country" onchange="change_country(this.value)" class="frm-field required" name="location">
+                               <option value="Location">Location</option>
+                               <option value="Thrissur">Thrissur</option>         
+                               <option value="Palakkad">Palakkad</option>
+                               <option value="Ernakulam">Ernakulam</option>
+                               <option value="Calicut">Calicut</option>
+                               <option value="Malappuram">Malappuram</option>
+                           </select>
+                       </div>	
+                       <div class="section_room">
+                           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                           <select id="country1" onchange="change_country(this.value)" class="frm-field required" name="floor">
+                               <option value="Floor">Floor</option>
+                               <option value="1">1</option>         
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="More">More</option>
+                              
+                           </select>
+                       </div>
+                       <div class="section_room">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <select id="country1" onchange="change_country(this.value)" class="frm-field required" name="sqrft">
+                                <option value="Sqrft">Sqrft</option>
+                                <option value="Below 1000">Below 1000</option>         
+                                <option value="1000-2000">1000-2000</option>
+                                <option value="2000-3000">2000-3000</option>
+                                <option value="3000-4000">3000-4000</option>
+                                <option value="4000-5000">4000-5000</option>
+                                <option value="More">More</option>
+                               
+                            </select>
+                        </div>
+                       <div class="reservation-grids">
+                           <div class="reservation-grid-left">
+                               <div class="section_room">
+                                   <span class="fa fa-bed" aria-hidden="true"> </span>
+                                   <select id="country2" onchange="change_country(this.value)" class="frm-field required" name="bedroom">
+                                       <option value="Bedrooms">Bedrooms</option>
+                                       <option value="1">1</option>         
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="More">More</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="reservation-grid-right">
+                               <div class="section_room">
+                                   <span class="fa fa-wheelchair-alt" aria-hidden="true"> </span>
+                                   <select id="country3" onchange="change_country(this.value)" class="frm-field required" name="bath">
+                                       <option value="Baths">Baths</option>
+                                       <option value="1">1</option>         
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="More">More</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="clearfix"> </div>
+                       </div>
+                       <div class="reservation-grids">
+                           <div class="reservation-grid-left">
+                                <div class="section_room">
+                                        <span class="fa fa-wheelchair-alt" aria-hidden="true"> </span>
+                                        <select id="country3" onchange="change_country(this.value)" class="frm-field required" name="kitchen">
+                                            <option value="Kitchens">Kitchens</option>
+                                            <option value="1">1</option>         
+                                            <option value="2">2</option>
+                                            
+                                            <option value="More">More</option>
+                                        </select>
+                                    </div>
+                           </div>
+                           <div class="reservation-grid-right">
+                                <div class="section_room">
+                                        <span class="fa fa-wheelchair-alt" aria-hidden="true"> </span>
+                                        <select id="country3" onchange="change_country(this.value)" class="frm-field required" name="stair">
+                                            <option value="Staircase">Staircase</option>
+                                            <option value="Inside">Inside</option>         
+                                            <option value="Outside">Outside</option>
+                                            <option value="Both">Both</option>
+                                            <option value="More">More</option>
+                                        </select>
+                                    </div>
+                           </div>
+                           <div class="clearfix"> </div>
+                       </div>
+                       <br/>
+                       <div class="reservation-grids">
+                            <div class="reservation-grid-left">
+                                 <input type="file"  name="plott">
+                            </div>
+                            <div class="reservation-grid-right">
+                                    <input type="file" name="plann" >
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                       <br/>
+                       <div class="keywords">
+                           
+                               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                               
+                               <input placeholder="Description" required=" " type="text" name="des">
+                               
+                               
+                               <input  type="submit" value="Submit">{% if msg %}
+                               {{msg}}
+                               {% endif %}
+                           
+                       </div>
+                   </div>
+           </div>	
+           <div class="col-md-6 plat">
+               <br/>
+               <br/>
+               <br/>
+               <br/>
+          <img src="../static/publicapp/images/a.jpg"/>
+           </div>
+        </form>      
+       </div>
+       <div class="clearfix"> </div>
+    	
+   </div>
+{% endblock %}

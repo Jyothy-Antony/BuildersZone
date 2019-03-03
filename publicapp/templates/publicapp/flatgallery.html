@@ -1,0 +1,51 @@
+
+{% extends "publicapp/publiclayout.html" %}
+{% block content %}
+<div class="gallery agile" id="gallery">
+    
+    <div class="container">
+        <h3 class="tittle"> Our <span>Gallery</span></h3>
+        <div class="agile_gallery_grids w3-agile">
+            <ul class="clearfix demo">
+                    {% if flat %}
+                    {% for i in flat %}
+                <li>
+                    <div class="gallery-grid1">
+                        <a href="{% url 'indhomegallery' id=i.id %}" >  <img src="{{i.add_image.url}}" alt=" " class="img-responsive" style="height:200px;width:300px"></a>
+                        <div class="p-mask">
+                                <h4>{{i.add_place}},<span>{{i.add_prize}}</span></h4>
+                            <p>{{i.add_sqrft}}</p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %} 
+        {% else %}
+               <li>
+                    <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Notifications</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>You have no notifications</td>
+                              </tr>
+                            </tbody>
+                          </table>
+               </li> 
+               {% endif %}
+            </ul>
+        
+        </div>
+    </div>
+</div>
+        
+        
+                
+               
+                
+              
+
+
+{% endblock %}

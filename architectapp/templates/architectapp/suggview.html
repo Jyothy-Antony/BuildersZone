@@ -1,0 +1,78 @@
+
+
+{% extends "architectapp/architectlayout.html" %}
+{% block content %}
+
+<div class="table-agile-info">
+        <div class="panel panel-default">
+           <div>
+             <table class="table" ui-jq="footable" ui-options="{
+               &quot;paging&quot;: {
+                 &quot;enabled&quot;: true
+               },
+               &quot;filtering&quot;: {
+                 &quot;enabled&quot;: true
+               },
+               &quot;sorting&quot;: {
+                 &quot;enabled&quot;: true
+               }}">
+               <thead>
+                 <tr>
+                   <th>ID</th>
+                   <th>Client Name</th>
+                   <th>Client Email</th>
+                   <th>Suggestion</th>
+                   <th>Replay</th>
+                   
+                 </tr>
+               </thead>
+
+               <tbody>
+                    {% if data %}
+                {% for i in  data %}
+                {% for j in  data1 %}
+                {% with a=i.userid %}
+                  {% with b=j.id %}
+                  {% if a == b %}
+                        <tr data-expanded="true">
+                          <td>{{i.id}}</td>
+                          
+                          <td>{{j.add_name}}</td>
+                          
+                          <td>{{j.add_email}}</td>
+                          <td>{{i.sugg}}</td>
+                          
+                         
+                          <td><a href="{% url 'Replay' i.id %}?i.id" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Replay</a></td>
+                        </tr>
+                        {% endif %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endfor %}
+                        {% endfor %}
+                        
+                        {% else %}
+                
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Notifications</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>You have no notifications</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                     
+              
+              {% endif %}
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+
+       {% endblock %}

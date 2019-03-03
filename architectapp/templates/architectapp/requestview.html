@@ -1,0 +1,55 @@
+
+
+{% extends "architectapp/architectlayout.html" %}
+{% block content %}
+
+<div class="table-agile-info">
+        <div class="panel panel-default">
+           <div>
+             <table class="table" ui-jq="footable" ui-options="{
+               &quot;paging&quot;: {
+                 &quot;enabled&quot;: true
+               },
+               &quot;filtering&quot;: {
+                 &quot;enabled&quot;: true
+               },
+               &quot;sorting&quot;: {
+                 &quot;enabled&quot;: true
+               }}">
+               <thead>
+                 <tr>
+                   <th>ID</th>
+                   
+                   
+                   <th>Location</th>
+                   
+                   <th>Square feet</th>
+                   <th>Plot</th>
+                   <th>Rough Plan</th>
+                   <th>View</th>
+                   
+                 </tr>
+               </thead>
+
+               <tbody>
+                {% for i in  data %}
+               
+                        <tr data-expanded="true">
+                          <td>{{i.id}}</td>
+                          
+                          <td>{{i.location}}</td>
+                         
+                          <td>{{i.sqrft}}</td>
+                          <td><img src="{{i.plot.url}}" style="height: 50px;width: 50px"/></td>
+                          <td><img src="{{i.plan.url}}" style="height: 50px;width: 50px"/></td>
+                          <td><a href="{% url 'planrequest' i.id %}?i.id" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>View</a></td>
+                        </tr>
+                     
+              {% endfor %}
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+
+       {% endblock %}

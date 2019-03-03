@@ -1,0 +1,51 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+<section>
+<div class="table-agile-info">
+    <div class="panel panel-default">
+       <div>
+         <table class="table" ui-jq="footable" ui-options="{
+           &quot;paging&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;filtering&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;sorting&quot;: {
+             &quot;enabled&quot;: true
+           }}">
+           <thead>
+             <tr>
+               <th>ID</th>
+               <th>Name</th>
+               
+               <th>Address</th>
+               <th>Place</th>
+               <th>Email</th>
+               <th>Contact</th>
+               <th>Image</th>
+               <th>Approve</th>
+               <th>Reject</th>
+             </tr>
+           </thead>
+           <tbody>
+               {% for i in userdata %}
+             <tr data-expanded="true">
+                    <td>{{i.id}}</td>
+               <td>{{i.add_name}}</td>
+               <td>{{i.add_address}}</td>
+               <td>{{i.add_place}}</td>
+               <td>{{i.add_email}}</td>
+               <td>{{i.add_phone}}</td>
+               <td><img src="{{i.add_image.url}}" style="height: 50px;width: 50px"/></td>
+               <td><a href="{% url 'userapprove' id=i.id %}?id=i.id" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>{{i.add_approve}}</a></td>
+              <td><a href="{% url 'userdelete' id=i.id %}?id=i.id"class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Delete Details" onclick="return confirm('Do You Want To Delete?')"></i>Delete</a></td>  
+            </tr>
+             {% endfor %}
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+  </section>
+   {% endblock %}

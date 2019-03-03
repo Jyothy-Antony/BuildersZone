@@ -1,0 +1,71 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <h1>Edit Works</h1>
+                </header>
+                <div class="panel-body">
+                    <div class="position-center">
+                        <form role="form" action="{% url 'workedit' detail.id %}?id=detail.id" method="POST"enctype="multipart/form-data">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Property Name</label>
+    
+                            <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" required="" value="{{detail.add_name}}" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Type</label>
+                            <td><select class="form-control" required="" name="typ">
+                                <option value="{{detail.add_typ}}" class="active">{{detail.add_typ}}</option>
+                                <option value="House"  >House</option>
+                                <option value="Flat">Flat</option>
+                                <option value="Shope">Shope</option>
+                            </select></td>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Place</label>
+                            <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="place" value="{{detail.add_place}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Near By</label>
+                            <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="nearby"value="{{detail.add_nearby}}">
+                        </div>
+                        
+                       
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Price</label>
+                            <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="prize" value="{{detail.add_prize}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Size</label>
+                            <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="sqrft" value="{{detail.add_sqrft}}">
+                        </div>
+                        <div class="form-group ">
+                            <label for="ccomment" >Description</label>
+                            
+                                <textarea class="form-control " id="ccomment" name="des" required="">{{detail.add_des}}></textarea>
+                            
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="img"></div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Image</label>
+                            <input class="form-control" id="exampleInputPassword1" placeholder="" type="file" name="image" >
+                            <img src="{{detail.add_image.url}}" style="height: 50px;width: 50px"/>
+                        </div>
+                        
+    
+                        <button type="submit" class="btn btn-info">Submit</button>
+                        {% if msg %}
+                                {{msg}}
+                        {% endif %}
+                    </form>
+                    </div>
+    
+                </div>
+                </section>
+                </div>
+</div>
+{% endblock %}

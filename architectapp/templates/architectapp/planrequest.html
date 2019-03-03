@@ -1,0 +1,227 @@
+{% extends "architectapp/architectlayout.html" %}
+{% block content %}
+<html>
+    <head>
+<style>
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+</style>
+<script>
+    $(document).ready(function() {
+    var panels = $('.user-infos');
+    var panelsButton = $('.dropdown-user');
+    panels.hide();
+
+    //Click dropdown
+    panelsButton.click(function() {
+        //get data-for attribute
+        var dataFor = $(this).attr('data-for');
+        var idFor = $(dataFor);
+
+        //current button
+        var currentButton = $(this);
+        idFor.slideToggle(400, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+            }
+            else
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+            }
+        })
+    });
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('button').click(function(e) {
+        e.preventDefault();
+        alert("This is a demo.\n :-)");
+    });
+});
+</script>
+    </head>
+    <body>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+      <div class="row">
+   
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+            <h1>  {{id}}</h1>
+              {% if data %}
+              <div class="row">
+                
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{ data.plot.url }}"style="height: 50px;width: 50px"/> </div>
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{ data.plan.url }}"style="height: 50px;width: 50px"/> </div>
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <thead>
+                      <tr>
+                        <th>
+                         Details
+                        </th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                      
+                      
+                      
+                      <tr>
+                        <td>Location:</td>
+                        <td>{{data.location}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Floor:</td>
+                        <td>{{data.floor}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>SquareFeet:</td>
+                        <td>{{data.sqrft}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Bedrooms:</td>
+                        <td>{{data.bedrooms}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Btahrooms:</td>
+                        <td>{{data.baths}}
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Staircase:</td>
+                        <td>{{data.staircase}}
+                        </td>
+                           
+                      </tr>
+
+                      <tr>
+                          <td>Client Name:</td>
+                          <td>{{data1.add_name}}
+                          </td>
+                             
+                        </tr>
+                      <tr>
+                          <td>Client Email:</td>
+                          <td>{{data1.add_email}}
+                          </td>
+
+                      </tr>
+                      <form action="{% url "planrequest" data.id %}?data.id" method="POST" role="form" enctype="multipart/form-data">{% csrf_token %}
+                        <legend>Demo Plan</legend>
+                      
+                        <div class="form-group">
+                          <label for="">Upload Plans</label>
+                          <input type="file" class="form-control" id=""   name="files">
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="">Cost</label>
+                            <input type="text" class="form-control" id=""name="cost">
+                          </div>
+                      
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                      
+                      
+                      
+                    </tbody>
+                  </table>
+                  
+                 
+                </div>
+              </div>
+              {% else %}
+                
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Notifications</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>You have no notifications</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              {% endif %}
+            </div>
+                 
+                 
+                 
+                 
+                 
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+</html> 
+{% endblock %}

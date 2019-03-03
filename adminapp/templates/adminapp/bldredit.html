@@ -1,0 +1,74 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+
+<div class="container">
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+          EDIT BUILDERS
+           
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="{% url 'bldredit' detail.id %}?id=detail.id" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Name</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="cname" name="name" minlength="2" required="" type="text" value="{{detail.add_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                         <label for="ccomment" class="control-label col-lg-3">Address</label>
+                        <div class="col-lg-6">
+                            <textarea class="form-control " id="ccomment" name="address" required="">{{detail.add_address}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="cemail" class="control-label col-lg-3">E-Mail</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="cemail" name="email" required="" type="email" value="{{detail.add_email}}">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Phone</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="curl" name="phone" type="number" value="{{detail.add_phone}}">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-3">Qualification</label>
+                            <div class="col-lg-6">
+                                <input class=" form-control" id="cname" name="quali" minlength="2" required="" type="text" value="{{detail.add_quali}}">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                                <label for="cname" class="control-label col-lg-3">Experience</label>
+                                <div class="col-lg-6">
+                                    <input class=" form-control" id="cname" name="exp" minlength="2" required="" type="number"value="{{detail.add_exp}}">
+                                </div>
+                            </div>
+                            <div class="form-group" class="form-control">
+                                <input type="checkbox" name="img"></div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Image</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="curl" name="image" type="file">
+                            <img src="{{detail.add_image.url}}" style="height: 50px;width: 50px"/>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-default" type="button">Cancel</button> 
+                            
+                        </div>
+                    </div>
+            </form>
+        </div>
+     
+    </section>
+
+</div>
+</div>
+
+{% endblock %}

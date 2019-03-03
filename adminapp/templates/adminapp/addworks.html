@@ -1,0 +1,128 @@
+{% extends "adminapp/adminlayout.html" %}
+{% block content %}
+<div class="container">
+<div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <h1>Add Property</h1>
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                    <form role="form" action="{% url "addworks" %}" method="POST"enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Property Name</label>
+                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" required="" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Type</label>
+                        <select class="form-control" required="" name="typ">
+                            <option value="Choose type" class="active">Choose type</option>
+                            <option value="House"  >House</option>
+                           
+                            <option value="Shope">Shope</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Place</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="place">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Near By</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="nearby">
+                    </div>
+                    
+                   
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Price</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="prize">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Size</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" required="" name="sqrft">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Bedrooms</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text"  name="bedrooms" required
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">floor</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text" name="floor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Toilet</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="text"  name="toilet" required>
+                    </div>
+                    <div class="form-group ">
+                        <label for="ccomment" >Description</label>
+                        
+                            <textarea class="form-control " id="ccomment" name="des" required=""></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Image</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="" type="file" name="image" required="">
+                    </div>
+                    
+
+                    <button type="submit" class="btn btn-info">Submit</button>
+                    {% if msg %}
+                            {{msg}}
+                            {% endif %}
+                </form>
+                </div>
+
+            </div>
+            <div class="table-agile-info">
+                <div class="panel panel-default">
+                   <div>
+                     <table class="table" ui-jq="footable" ui-options="{
+                       &quot;paging&quot;: {
+                         &quot;enabled&quot;: true
+                       },
+                       &quot;filtering&quot;: {
+                         &quot;enabled&quot;: true
+                       },
+                       &quot;sorting&quot;: {
+                         &quot;enabled&quot;: true
+                       }}">
+                       <thead>
+                         <tr>
+                           <th>ID</th>
+                           <th>Name</th>
+                           
+                           <th>Type</th>
+                           <th>Place</th>
+                           <th>Size</th>
+                           <th>Prize</th>
+                           <th>Image</th>
+                           <th>Edit</th>
+                           <th>Delete</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                           {% for i in prprtdata %}
+                         <tr data-expanded="true">
+                                <td>{{i.id}}</td>
+                           <td>{{i.add_name}}</td>
+                           
+                           <td>{{i.add_typ}}</td>
+                           <td>{{i.add_place}}</td>
+                           <td>{{i.add_sqrft}}</td>
+                           <td>{{i.add_prize}}</td>
+                           <td><img src="{{i.add_image.url}}" style="height: 50px;width: 50px"/></td>
+                           <td><a href="{% url 'workedit' id=i.id %}" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Edit</a></td>
+                          <td><a href="{% url 'workdelete' id=i.id %}?id=i.id"class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Delete Details" ></i>Delete</a></td>  
+                        </tr>
+                         {% endfor %}
+                       
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+               </div>
+              
+        </section>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "userapp/userlayout.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="col-lg-12">
+<div class="table-agile-info">
+    <div class="panel panel-default">
+       <div>
+         <table class="table" ui-jq="footable" ui-options="{
+           &quot;paging&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;filtering&quot;: {
+             &quot;enabled&quot;: true
+           },
+           &quot;sorting&quot;: {
+             &quot;enabled&quot;: true
+           }}">
+           <thead>
+             {% if data %}
+             <tr>
+                <th>Architect Name</th>
+                <th>Email</th>
+               <th>Cost</th>
+            
+               
+              
+               <th>Final Plan</th>
+               <th>Accept</th>
+               
+              
+             </tr>
+           </thead>
+           <tbody>
+            {% for i in  data %}
+              {% for j in  archdata %}
+                {% with a=i.archid %}
+                  {% with b=j.id %}
+                  {% if a == b %}
+                  {% if i.status %}
+                      <tr data-expanded="true">
+                        <td>{{j.add_name}}</td>
+                        <td>{{j.add_email}}</td>
+                        <!-- <td>{{i.location}}</td> -->
+                        
+                        <td>{{i.archcost}}</td>
+                        <td><img src="{{i.archplan.url}}" style="height: 50px;width: 50px"/></td>
+                        <td><a href="{% url 'payment' %}" class="btn btn-primary btn-sm"><i class="" aria-hidden="true" title="Edit Details"></i>Accept</a></td>
+                      </tr>
+                      {% endif %}
+                    {% endif %}
+                  {% endwith %}
+                {% endwith %}
+              {% endfor %}
+            {% endfor %}
+
+            {% else %}
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Notifications</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>You have no notifications</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            {% endif %}
+
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+</div>
+</div>
+   {% endblock %}
